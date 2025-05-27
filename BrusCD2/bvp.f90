@@ -1,0 +1,119 @@
+!Free parameter=NBC+NINT-NDIM+1
+
+!unames = {1:'u', 2:'v', 3:'r', 4:'s'}
+!parnames = {1:'alpha', 2:'beta', 3:'gamma', 4:'m', 5:'D1', 6:'D2'}
+
+
+    SUBROUTINE FUNC(NDIM,U,ICP,PAR,IJAC,F,DFDU,DFDP)
+
+		IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+		DIMENSION U(NDIM),PAR(*),F(NDIM)
+
+		CALL FFFF(NDIM,U,ICP,PAR,IJAC,F)
+		PERIOD=PAR(11)
+        DO  I=1,NDIM
+			F(I)=PERIOD*F(I)
+		END DO
+
+    END SUBROUTINE FUNC
+
+	
+	
+    SUBROUTINE FFFF(NDM,U,ICP,PAR,IJAC,F)
+
+
+		IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+		DIMENSION U(NDM),PAR(*),F(NDM),DFDU(NDM,NDM),DFDP(NDM,NDM)
+		
+		DOUBLE PRECISION a, c, delta, p
+
+		  a = PAR(1)
+		  c = PAR(2)
+		  delta = PAR(3)
+		  p = PAR(4)
+		  
+		  F(1) = U(3)
+		  F(2) = U(4)
+		  F(3) = - (a - c*U(1) + (U(1)**2.0)*U(2))/(delta**2.0) - p*((U(1)**2.0)*U(2) - (c - 1)*U(1))/(delta**2.0)
+		  F(4) = - ((c - 1)*U(1) - (U(1)**2.0)*U(2))
+		
+
+	END SUBROUTINE FFFF
+
+
+ 
+	SUBROUTINE STPNT(NDIM,U,PAR,T)
+
+
+		IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+		COMMON /FRST/ IFRST
+		DIMENSION U(NDIM),PAR(*)
+
+		IF(IFRST.NE.1)THEN
+			IFRST = 1
+			
+			PERIOD = 61*1.3110138349897775
+			! 31*1.446928118765654
+			PAR(11)= PERIOD
+			
+
+			!parnames = {1:'a', 2:'c', 3:'delta', 4: 'p'}
+			
+			!PAR(1) = 3.8
+			PAR(1) = 4.0
+      		!PAR(2) = 17.0
+			PAR(2) = 18.5
+      		PAR(3) = 0.8060792919365444
+			PAR(4) = 0.0
+
+
+		ENDIF
+
+		U(1) = PAR(1)
+		U(2) = (PAR(2) - 1)/PAR(1)
+		U(3) = 0.0
+		U(4) = 0.0
+
+		
+    END SUBROUTINE STPNT
+
+	
+    SUBROUTINE BCND(NDIM,PAR,ICP,NBC,U0,U1,FB,IJAC,DBC)
+
+
+		IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+		DIMENSION PAR(*),ICP(*),U0(NDIM),U1(NDIM),FB(NBC)
+
+        PI = 4.D0*DATAN(1.D0)
+		
+		FB(1) = U0(3)
+		FB(2) = U0(4)
+		FB(3) = U1(3)
+		FB(4) = U1(4)
+
+
+	END SUBROUTINE BCND
+	
+    
+	SUBROUTINE ICND(NDIM,PAR,ICP,NINT,U,UOLD,UDOT,UPOLD,FI,IJAC,DINT)
+		!     ---------- ----
+	
+		IMPLICIT NONE
+		INTEGER, INTENT(IN) :: NDIM, ICP(*), NINT, IJAC
+		DOUBLE PRECISION, INTENT(IN) :: PAR(*)
+		DOUBLE PRECISION, INTENT(IN) :: U(NDIM), UOLD(NDIM), UDOT(NDIM), UPOLD(NDIM)
+		DOUBLE PRECISION, INTENT(OUT) :: FI(NINT)
+		DOUBLE PRECISION, INTENT(INOUT) :: DINT(NINT,*)
+	
+		FI(1) = UPOLD(1)*(U(1)-UOLD(1)) ! phase condition
+	
+	END SUBROUTINE ICND
+
+
+	
+    SUBROUTINE FOPT
+	END SUBROUTINE FOPT
+
+	
+	SUBROUTINE PVLS
+	END SUBROUTINE PVLS
