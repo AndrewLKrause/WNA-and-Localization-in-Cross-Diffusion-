@@ -1,0 +1,25 @@
+a = loadbd('ic')
+
+b = run(a('UZ1'), ICP = 'p', DSMIN = 1e-10, DSMAX = 1e-3, NMX = 100000, NPR = 1000, SP = ['LP10'], UZR = {'p': 0.01}, DS = '-', EPSL = 1e-07, EPSU = 1e-07, EPSS = 1e-06)
+
+# EPSL = 1e-07, EPSU = 1e-07, EPSS = 1e-06
+
+c = run(b(9), ISW = 2, ICP = ['p', 'lambda'], ISP = 0, UZSTOP = {'p': 1.0}, NTST = 800)
+d = run(c('EP1'))
+d = rl(d)
+save(d, 'lp1')
+
+e = run(b(10), ISW = 2, ICP = ['p', 'lambda'], ISP = 0, UZSTOP = {'p': 1.0}, NTST = 700)
+f = run(e('EP1'))
+f = rl(f)
+save(f, 'lp2')
+
+g = run(b(9), ISW = 2, ICP = ['p', 'd'], ISP = 0, UZSTOP = {'p': 1.0, 'd': 1.0}, NTST = 800)
+h = run(g('EP1'), DS = '-')
+h = rl(h)
+save(h, 'importantLP')
+
+i = run(b(10), ISW = 2, ICP = ['p', 'lambda'], ISP = 0, UZSTOP = {'p': 1.0, 'd': 1.0}, NTST = 700)
+j = run(i('EP1'))
+j = rl(j)
+save(j, 'importantLP2')

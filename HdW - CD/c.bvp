@@ -1,0 +1,11 @@
+parnames = {1:'sigma', 2:'lambda', 3:'d', 4:'p'}
+unames = {1:'u', 2:'v', 3:'u_x', 4:'v_x'}
+
+NDIM = 4, IPS = 4, IRS = 0, ILP = 1
+ICP = ['lambda', 'sigma', 'd', 11]
+NTST = 1000, NCOL = 4, IAD = 1, ISP = 2, ISW = 1, IPLT = 0, NBC = 4, NINT = 0
+NMX = 500, NPR = 100, MXBF = 20, IID = 2, ITMX = 8, ITNW = 5, NWTN = 3, JAC = 0
+EPSL = 1e-08, EPSU = 1e-08, EPSS = 1e-06
+DS = 1e-02, DSMIN = 5e-06, DSMAX = 1e-02, IADS = 1
+NPAR = 11, THL = {}, THU = {}
+UZSTOP = {'sigma': [-10.0, 0.0], 'lambda': [-10.0, 50.0], 'd': [0.0, 5.9], 11: [0.0, 100.0]}
