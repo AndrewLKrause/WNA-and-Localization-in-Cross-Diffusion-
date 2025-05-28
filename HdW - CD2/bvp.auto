@@ -1,0 +1,13 @@
+a = run('bvp', DSMAX = 5e-4, NMX = 3000, NPR = 1000)
+
+b = run(a('BP1'), ISW = - 1, NMX = 2000)
+
+c = run(b('BP1'), ISW = - 1, ISP = 0, NMX = 200)
+
+d = run(c('EP1'), ICP = 11, UZSTOP = {11: 500.0}, NTST = 1000, DSMAX = 3, NMX = 100000, NPR = 1000)
+d = rl(d)
+save(d, 'ic')
+
+e = run(d('UZ1'), ICP = 'lambda', DSMAX = 1e-4, NMX = 1500, NPR = 500)
+e = rl(e)
+save(e, 'ic')
