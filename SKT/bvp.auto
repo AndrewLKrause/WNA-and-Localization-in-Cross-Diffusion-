@@ -1,0 +1,9 @@
+a = run('bvp')
+
+b = run(a(10), ISW = -1, NMX = 1000, NPR = 500, DSMAX = 1e-3, DSMIN = 1e-10, DS = '-')
+
+c = run(b('BP1'), ISW = -1, NMX = 200, NPR = 100)
+
+d = run(c('EP1'), ICP = 11, DSMAX = 3, UZSTOP = {11: 500.0}, NTST = 2000, NMX = 100000, NPR = 1000, DS = '-')
+
+e = run(d('UZ1'), ICP = 'p', DSMIN = 1e-10, DSMAX = 1e-4, NMX = 99000, NPR = 1000, UZR = {'p': 0.01})
