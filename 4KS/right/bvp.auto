@@ -1,0 +1,7 @@
+a = run('bvp', DS = '-', DSMAX = 1e-4, NMX = 100)
+
+b = run(a(20), ISW = - 1, DSMAX = 1e-2)
+
+c = run(b('BP1'), ISW = -1, DSMAX = 1e-4, NMX = 10000, ISP = 0)
+c = rl(c)
+save(c, 'snaking')
