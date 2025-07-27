@@ -5,7 +5,7 @@ include("plot_solution.jl")
 
 N = 2
 L = 20.0
-Nx = 500
+Nx = 200
 tspan = (0.0, 100.0)
 Ncomp = 4
 
