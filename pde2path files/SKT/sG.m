@@ -1,0 +1,25 @@
+function r = sG(p,u)
+    u1 = u(1:p.np); % identify solution component 1
+    u2 = u(p.np + 1:2*p.np); % identify solution component 2
+    par = u(p.nu + 1:end); % identify parameters
+    r1 = par(1);
+    r2 = par(2);
+    a1 = par(3);
+    a2 = par(4);
+    b1 = par(5);
+    b2 = par(6);
+    d1 = par(7);
+    d2 = par(8);
+    d11 = par(9);
+    d12 = par(10);
+    d21 = par(11);
+    d22 = par(12);
+    f1 = r1*u1.*(1 - a1*u1 - b1*u2); % non-linearity for u1 
+    f2 = r2*u2.*(1 - b2*u1 - a2*u2); % non-linearity for u2
+    f = [f1; f2];
+    [Kaux11, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d1 + d11*u1 + d12*u2, 1, 1);
+    [Kaux12, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d12*u1, 1, 1);
+    [Kaux21, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d21*u2, 1, 1);
+    [Kaux22, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d2 + d21*u1 + d22*u2, 1, 1);
+    r = kron([[D1, 0]; [0, D2]], p.mat.K)*u(1:p.nu) + kron([[1, 0]; [0, 0]], Kaux11)*u(1:p.nu) + kron([[0, 1]; [0, 0]], Kaux12)*u(1:p.nu) + kron([[0, 0]; [1, 0]], Kaux21)*u(1:p.nu) + kron([[0, 0]; [0, 1]], Kaux22)*u(1:p.nu) - p.mat.M*f; % calculation of the residual
+end
