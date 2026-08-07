@@ -15,6 +15,8 @@ if isfield(p,'hopf'); ho=p.hopf;
 end
 ineg=max(ineg); u=p.u; 
 try; M=getM(p); n1=floor(p.nu/p.nc.neq); 
-    l2 = sqrt(u(1:n1)'*p.mat.K*u(1:n1)); 
+    mesh = getpte(p);
+    length = 2*mesh(end);
+    l2 = sqrt(u(1:n1)'*M(1:n1,1:n1)*u(1:n1)/length); 
 catch; l2=0; end % catch an error in Xcont
 bra=[p.file.count; p.sol.ptype; ineg'; getlam(p); p.sol.err; l2]; 

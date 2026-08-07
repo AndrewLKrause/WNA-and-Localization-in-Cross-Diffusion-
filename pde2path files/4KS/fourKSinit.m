@@ -24,6 +24,6 @@ function p=schnakinit(p, h, par)
     z = par(7)/(par(1)*(par(2) + par(6)) + par(6)*par(7))*ones(p.np, 1); 
     p.u = [u; v; w; z; par'];
     p.nc.nsteps = 200;
-    p.plot.pmod = 0;
+    p.plot.pmod = 1;
     p.file.smod = 5;
 end

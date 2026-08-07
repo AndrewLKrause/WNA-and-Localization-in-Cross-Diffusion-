@@ -21,6 +21,9 @@ end
     p = cont(p, 25);
     toc
 
+    % bif point 1: c = 4.30980
+    % bif point 2: c = 2.90970
+
     [Gua, Gun] = jaccheck(p);
 
     max(max(abs(Gun - Gua)));
@@ -29,7 +32,7 @@ end
 
 %% 3 - switch to periodic branch and continue. For comparison of \ and 
     % lssbel, switch off stuff not related to lss 
-    p = swibra('p', 'bpt1', 'b1', 0.02);
+    p = swibra('p', 'bpt1', 'b1', 1e-2);
     p.nc.dsmin = 1e-10;
     p.sw.spcalc = 1;
     p.sw.foldcheck = 1;
@@ -37,15 +40,15 @@ end
     p.sw.verb = 2;
     p0 = p;
     t1 = tic;
-    p = cont(p, 100);
+    p = cont(p, 150);
     t1 = toc(t1); % cont with default settings
 
-    p = swibra('b1', 'bpt1', 'snake', 0.02);
+    p = swibra('b1', 'bpt1', 'snake', 1e-2);
     p.nc.dsmin = 1e-10;
     p.sw.verb = 2;
     p0 = p;
     t1 = tic;
-    p = cont(p, 500);
+    p = cont(p, 1000);
     t1 = toc(t1); % cont with default settings
 
     % p = swibra('p', 'bpt46', 'b46', 0.02);
