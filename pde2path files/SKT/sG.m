@@ -17,9 +17,12 @@ function r = sG(p,u)
     f1 = r1*u1.*(1 - a1*u1 - b1*u2); % non-linearity for u1 
     f2 = r2*u2.*(1 - b2*u1 - a2*u2); % non-linearity for u2
     f = [f1; f2];
-    [Kaux11, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d1 + d11*u1 + d12*u2, 1, 1);
-    [Kaux12, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d12*u1, 1, 1);
-    [Kaux21, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d21*u2, 1, 1);
-    [Kaux22, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, d2 + d21*u1 + d22*u2, 1, 1);
-    r = kron([[D1, 0]; [0, D2]], p.mat.K)*u(1:p.nu) + kron([[1, 0]; [0, 0]], Kaux11)*u(1:p.nu) + kron([[0, 1]; [0, 0]], Kaux12)*u(1:p.nu) + kron([[0, 0]; [1, 0]], Kaux21)*u(1:p.nu) + kron([[0, 0]; [0, 1]], Kaux22)*u(1:p.nu) - p.mat.M*f; % calculation of the residual
+    [Kaux1, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, u1, 1, 1);
+    [Kaux2, ~, ~] = p.pdeo.fem.assema(p.pdeo.grid, u2, 1, 1);
+    r = kron([[d1, 0]; [0, d2]], p.mat.K)*u(1:p.nu) +...
+        (kron([[d11, 0]; [0, 0]], Kaux1) + kron([[d12, 0]; [0, 0]], Kaux2))*u(1:p.nu) +...
+        + kron([[0, d12]; [0, 0]], Kaux1)*u(1:p.nu) +...
+        kron([[0, 0]; [d21, 0]], Kaux2)*u(1:p.nu) +...
+        (kron([[0, 0]; [0, d21]], Kaux1) + kron([[0, 0]; [0, d22]], Kaux2))*u(1:p.nu) -...
+        p.mat.M*f; % calculation of the residual
 end

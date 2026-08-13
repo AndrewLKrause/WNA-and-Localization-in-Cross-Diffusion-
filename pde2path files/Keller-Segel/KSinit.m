@@ -21,7 +21,7 @@ function p=schnakinit(p, h, par)
     u = par(5)*ones(p.np, 1);
     v = (par(1)*par(5)/par(2))*ones(p.np, 1); % hom.soln 
     p.u = [u; v; par'];
-    p.nc.nsteps = 200;
+    p.nc.nsteps = 500;
     p.plot.pmod = 1;
     p.file.smod = 5;
 end

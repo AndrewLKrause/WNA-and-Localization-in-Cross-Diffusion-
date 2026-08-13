@@ -1,0 +1,30 @@
+function p=fourKSinit(p, h, par)
+    p = stanparam(p);
+    screenlayout(p);
+    p = setfn(p, 'p');
+    p.nc.lammin = 0.0;
+    p.nc.lammax = 30.0;
+    p.nc.bisecmax = 10;
+    p.nc.neq = 4;
+    p.sw.sfem = - 1;
+    p.fuha.sG = @sG;
+    p.fuha.sGjac = @sGjac; 
+    % lx = 10*5.183850242607483;
+    lx = 10*5.269249994007863; % wavenumer of the critical mode
+    p.pdeo = stanpdeo1D(lx, h);
+    p.np = p.pdeo.grid.nPoints;
+    p.nu = p.np*p.nc.neq; 
+    p = setfemops(p);
+    p.nc.ilam = 3;
+    p.sol.xi = 1/p.nu;
+    p.sol.ds = 1e-2;
+    p.nc.dsmax = 1e-2; 
+    u = 1.0*ones(p.np, 1);
+    v = (par(2) + par(6))/(par(1)*(par(2) + par(6)) + par(6)*par(7))*ones(p.np, 1); % hom.soln
+    w = 1.0*ones(p.np, 1);
+    z = par(7)/(par(1)*(par(2) + par(6)) + par(6)*par(7))*ones(p.np, 1); 
+    p.u = [u; v; w; z; par'];
+    p.nc.nsteps = 200;
+    p.plot.pmod = 1;
+    p.file.smod = 5;
+end
