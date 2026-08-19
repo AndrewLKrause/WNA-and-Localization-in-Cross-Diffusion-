@@ -1,0 +1,1 @@
+2*bNF0^2 - 2*bNF0*muNF*pNF0/(bNF0^2 + 1) + (1 - muNF)*(-bNF0^2 - d*muNF)

@@ -1,0 +1,2 @@
+-b - bNF0 - u + (v + (b + bNF0)^(-1))*(b + bNF0 + u)^2
+b + bNF0 - (v + (b + bNF0)^(-1))*(b + bNF0 + u)^2

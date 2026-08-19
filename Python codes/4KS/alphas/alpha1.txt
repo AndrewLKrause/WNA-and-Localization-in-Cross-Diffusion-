@@ -1,0 +1,1 @@
+psiNF0*(-2*W133NF0*muNF^(1/2) + W133NF1*cNF0*muNF^(1/2) - 1/2*cNF0*phiNF1 + phiNF0) + psiNF1*(-2*D*W133NF1*muNF^(1/2) + D*phiNF1) + psiNF2*(-2*D*W133NF2*muNF^(1/2) + D*phiNF2) + psiNF3*(-2*D*W133NF3*muNF^(1/2) + D*phiNF3)

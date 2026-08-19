@@ -1,0 +1,2 @@
+r1*(u + (-b1 + p + pNF0)/(a1*(p + pNF0) - b1*b2))*(-a1*(u + (-b1 + p + pNF0)/(a1*(p + pNF0) - b1*b2)) - b1*(v + (a1 - b2)/(a1*(p + pNF0) - b1*b2)) + 1)
+r2*(v + (a1 - b2)/(a1*(p + pNF0) - b1*b2))*(-b2*(u + (-b1 + p + pNF0)/(a1*(p + pNF0) - b1*b2)) - (p + pNF0)*(v + (a1 - b2)/(a1*(p + pNF0) - b1*b2)) + 1)

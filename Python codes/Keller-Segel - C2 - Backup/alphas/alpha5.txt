@@ -1,0 +1,1 @@
+psiNF0*(-W13NF0*rNF2/(k + a^(-1)) + (1/2)*W13NF1*muNF*pNF2 + (1/2)*muNF*pNF4*phiNF1 - phiNF0*rNF4/(k + a^(-1)))

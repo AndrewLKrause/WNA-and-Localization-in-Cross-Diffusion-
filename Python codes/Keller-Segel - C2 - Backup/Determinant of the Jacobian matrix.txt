@@ -1,0 +1,1 @@
+-1/2*muNF*pNF0 + (-muNF - rNF0/(k + a^(-1)))*(-D*muNF - a)

@@ -1,0 +1,1 @@
+psiNF0*(-4*W02NF0*phiNF0*rNF0/(k + a^(-1)) + 2*W02NF0*phiNF1*rNF0/(k + a^(-1))^2 + 2*W02NF1*phiNF0*rNF0/(k + a^(-1))^2 - 2*W22NF0*phiNF0*rNF0/(k + a^(-1)) + W22NF0*phiNF1*rNF0/(k + a^(-1))^2 + W22NF1*phiNF0*rNF0/(k + a^(-1))^2 - 1/4*muNF*pNF0*phiNF0^2*phiNF1 + 3*phiNF0^2*phiNF1*rNF0/(k + a^(-1))^2 - 3*phiNF0*phiNF1^2*rNF0/(k + a^(-1))^3)

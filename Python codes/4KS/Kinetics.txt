@@ -1,0 +1,4 @@
+-r0*u*(u + 1)
+-a*(v + (b + bNF0 + p)/(a*(b + bNF0 + p) + p*q)) - q*(v + (b + bNF0 + p)/(a*(b + bNF0 + p) + p*q))*(w + 1) + u + (b + bNF0)*(u + 1)^2*(q/(a*(b + bNF0 + p) + p*q) + z) + 1
+-q*(v + (b + bNF0 + p)/(a*(b + bNF0 + p) + p*q))*(w + 1) - w*(u + 1) + (p + (b + bNF0)*(u + 1)^2)*(q/(a*(b + bNF0 + p) + p*q) + z)
+q*(v + (b + bNF0 + p)/(a*(b + bNF0 + p) + p*q))*(w + 1) - (p + (b + bNF0)*(u + 1)^2)*(q/(a*(b + bNF0 + p) + p*q) + z)

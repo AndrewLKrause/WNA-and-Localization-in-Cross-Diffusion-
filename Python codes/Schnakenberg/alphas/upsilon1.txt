@@ -1,0 +1,1 @@
+-2*bNF0*bNF2*phiNF1*psiNF1 + psiNF0*(2*bNF0*bNF2*phiNF1 - muNF*phiNF1*(bNF0*pNF2/(bNF0^2 + 1) + bNF2*(-2*bNF0^2*pNF0/(bNF0^2 + 1)^2 + pNF0/(bNF0^2 + 1))))
